@@ -9,6 +9,7 @@ import org.junit.Test;
 
 public class MinhaListaImpTest {
 
+	// @Before => anotacao
 	@Before
 	public void setUp() throws Exception {
 	}
@@ -40,6 +41,7 @@ public class MinhaListaImpTest {
 			fail("falhou");
 		} catch (IllegalArgumentException e) {
 			//a excessao tem de ser a mesma excessao do retorno
+			
 			Assert.assertTrue(true);
 		}
 		
@@ -63,6 +65,7 @@ public class MinhaListaImpTest {
 		sufixo = obterSufixo(obj);
 		Assert.assertEquals(valor, sufixo);
 		
+		//fail("Not yet implemented");
 	}
 
 	private String obterSufixo(MinhaListaImp<String> obj) {
@@ -100,7 +103,7 @@ public class MinhaListaImpTest {
 
 	@Test
 	public void testBuscar() {
-		
+
 		MinhaListaImp<String> obj = null;
 		String valor = null;
 		String resultado = null;
