@@ -6,15 +6,23 @@ public class MinhaListaImp<Tipo> implements MinhaLista<Tipo> {
 	
 	public MinhaListaImp(Tipo valorInicio) {
 		
+		//nao permita que o primeiro argumento seja nulo
+		if (valorInicio == null){
+			// seta excessao
+			// padrao para problemas de argumento
+			throw new IllegalArgumentException();
+		} 
+		
 		this.inicio = new Nodo<Tipo>(valorInicio);
 	}
 
-	public Nodo<Tipo> getInicio() {
+	// protected: todos do pacote enxergam
+	//public Nodo<Tipo> getInicio() {
+	protected Nodo<Tipo> getInicio() {
 		return inicio;
 	}
 
-
-	public void setInicio(Nodo<Tipo> inicio) {
+	protected void setInicio(Nodo<Tipo> inicio) {
 		this.inicio = inicio;
 	}
 

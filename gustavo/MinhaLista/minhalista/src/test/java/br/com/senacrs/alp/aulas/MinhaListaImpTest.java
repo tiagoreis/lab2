@@ -1,6 +1,7 @@
 package br.com.senacrs.alp.aulas;
 
 import static org.junit.Assert.*;
+import junit.framework.Assert;
 
 import org.junit.After;
 import org.junit.Before;
@@ -8,6 +9,7 @@ import org.junit.Test;
 
 public class MinhaListaImpTest {
 
+	// @Before => anotacao
 	@Before
 	public void setUp() throws Exception {
 	}
@@ -18,11 +20,41 @@ public class MinhaListaImpTest {
 
 	@Test
 	public void testMinhaListaImp() {
-		fail("Not yet implemented");
+		// Object => pq a lista ta de forma generica
+		MinhaListaImp<String> obj = null;
+		String arg = null;
+		
+		arg = "valor valido";
+		obj = new MinhaListaImp<String>(arg);
+		//verifica se a condicao eh satisfeita, caso nao seja para o teste
+		Assert.assertNotNull(obj);
+		
 	}
 
 	@Test
+	public void testMinhaListaImpNull() {
+		
+		MinhaListaImp<String> obj = null;
+		
+		try {
+			obj = new MinhaListaImp<String>(null);
+			fail("falhou");
+		} catch (IllegalArgumentException e) {
+			//a excessao tem de ser a mesma excessao do retorno
+			
+			Assert.assertTrue(true);
+		}
+		
+		// espera q o objeto seja nulo
+		//Assert.assertNull(obj);
+	
+	}
+	
+	@Test
 	public void testSufixar() {
+		
+		
+		
 		fail("Not yet implemented");
 	}
 
