@@ -9,7 +9,6 @@ import org.junit.Test;
 
 public class MinhaListaImpTest {
 
-	// @Before => anotacao
 	@Before
 	public void setUp() throws Exception {
 	}
@@ -41,7 +40,6 @@ public class MinhaListaImpTest {
 			fail("falhou");
 		} catch (IllegalArgumentException e) {
 			//a excessao tem de ser a mesma excessao do retorno
-			
 			Assert.assertTrue(true);
 		}
 		
@@ -65,7 +63,6 @@ public class MinhaListaImpTest {
 		sufixo = obterSufixo(obj);
 		Assert.assertEquals(valor, sufixo);
 		
-		//fail("Not yet implemented");
 	}
 
 	private String obterSufixo(MinhaListaImp<String> obj) {
@@ -82,34 +79,107 @@ public class MinhaListaImpTest {
 		return resultado;
 	}
 
-	private String obterSufixo() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	@Test
 	public void testPrefixar() {
-		fail("Not yet implemented");
+		
+		Nodo<String> nodo = null;
+		MinhaListaImp<String> obj = null;
+		String valor = null;
+		String prefixo = null;
+		
+		obj = new MinhaListaImp<String>("inicio");
+		valor = "prefixo";
+		
+		obj.prefixar(valor);
+		nodo = obj.getInicio();
+		prefixo = nodo.getValor();
+
+		Assert.assertEquals(valor, prefixo);
+		
 	}
 
 	@Test
 	public void testBuscar() {
-		fail("Not yet implemented");
+		
+		MinhaListaImp<String> obj = null;
+		String valor = null;
+		String resultado = null;
+		Integer posicao = null;
+		
+		valor = "valor";
+		posicao = 0;
+		
+		obj = new MinhaListaImp<String>(valor );
+		resultado = obj.buscar(posicao);
+		
+		Assert.assertEquals(valor, resultado);
+		
 	}
 
 	@Test
 	public void testInserir() {
-		fail("Not yet implemented");
+		
+		MinhaListaImp<String> obj = null;
+		String valor = null;
+		Integer posicao = null;
+		
+		valor = "valor";
+		posicao = 0;
+		
+		obj = new MinhaListaImp<String>(valor );
+		obj.inserir(posicao, valor);
+		
 	}
 
 	@Test
 	public void testRemover() {
-		fail("Not yet implemented");
+		MinhaListaImp<String> obj = null;
+		String valor = null;
+		Integer posicao = null;
+		
+		valor = "valor";
+		posicao = 1;
+		
+		obj = new MinhaListaImp<String>(valor );
+		
+		obj.inserir(posicao, valor);
+		obj.remover(posicao);
+		
 	}
 
 	@Test
 	public void testTamanho() {
-		fail("Not yet implemented");
+
+		MinhaListaImp<String> obj = null;
+
+		int tamanho = 0;
+		int resultado = 0;
+		
+		obj = new MinhaListaImp<String>("inicio");
+
+		// valor da classe de implementacao
+		resultado = obj.tamanho();
+		// valor vindo da classe auxiliar
+		tamanho = obterTamanho(obj);
+		
+		Assert.assertEquals(resultado, tamanho);
+		
 	}
+	
+	private Integer obterTamanho(MinhaListaImp<String> obj) {
+		
+		Nodo<String> nodo = null;
+		int tamanho = 1;
+		
+		nodo = obj.getInicio();
+		
+		while(nodo.getProximo() != null){
+			nodo = nodo.getProximo();
+			tamanho++;
+		}
+
+		return tamanho;
+	}
+	
 
 }
