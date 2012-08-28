@@ -53,9 +53,38 @@ public class MinhaListaImpTest {
 	@Test
 	public void testSufixar() {
 		
+		MinhaListaImp<String> obj = null;
+		String valor = null;
+		String sufixo = null;
 		
 		
-		fail("Not yet implemented");
+		obj = new MinhaListaImp<String>("inicio");
+		valor = "valor";
+		obj.sufixar(valor);
+		//verificar se o sufixo eh o ultimo da lista
+		sufixo = obterSufixo(obj);
+		Assert.assertEquals(valor, sufixo);
+		
+		//fail("Not yet implemented");
+	}
+
+	private String obterSufixo(MinhaListaImp<String> obj) {
+		String resultado = null;
+		Nodo<String> nodo = null;
+		
+		nodo = obj.getInicio();
+		while(nodo.getProximo() != null){
+			nodo = nodo.getProximo();
+		}
+		
+		resultado = nodo.getValor();
+		
+		return resultado;
+	}
+
+	private String obterSufixo() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Test
