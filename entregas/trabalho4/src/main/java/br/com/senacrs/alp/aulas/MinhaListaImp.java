@@ -4,6 +4,13 @@ public class MinhaListaImp<Tipo> implements MinhaLista<Tipo> {
 	
 	private Nodo<Tipo> inicio = null;
 	
+	public  MinhaListaImp() {
+		
+		Tipo obj = (Tipo) new Object();
+		this.inicio = new Nodo<Tipo>(obj);
+		
+	}
+	
 	public MinhaListaImp(Tipo valorInicio) {
 		
 		//nao permita que o primeiro argumento seja nulo
@@ -12,6 +19,9 @@ public class MinhaListaImp<Tipo> implements MinhaLista<Tipo> {
 			// padrao para problemas de argumento
 			throw new IllegalArgumentException();
 		} 
+
+		Tipo obj = (Tipo) new Object();
+		//this.inicio = new Nodo<Tipo>(obj);
 		
 		this.inicio = new Nodo<Tipo>(valorInicio);
 	}
