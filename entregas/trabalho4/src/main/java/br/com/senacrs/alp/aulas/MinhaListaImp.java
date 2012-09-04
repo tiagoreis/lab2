@@ -13,6 +13,9 @@ public class MinhaListaImp<Tipo> implements MinhaLista<Tipo> {
 	
 	public MinhaListaImp(Tipo valorInicio) {
 		
+		Tipo obj = (Tipo) new Object();
+		this.inicio = new Nodo<Tipo>(null);
+		
 		//nao permita que o primeiro argumento seja nulo
 		if (valorInicio == null){
 			// seta excessao
@@ -20,7 +23,7 @@ public class MinhaListaImp<Tipo> implements MinhaLista<Tipo> {
 			throw new IllegalArgumentException();
 		} 
 
-		Tipo obj = (Tipo) new Object();
+		//Tipo obj = (Tipo) new Object();
 		//this.inicio = new Nodo<Tipo>(obj);
 		
 		this.inicio = new Nodo<Tipo>(valorInicio);
@@ -58,20 +61,36 @@ public class MinhaListaImp<Tipo> implements MinhaLista<Tipo> {
 	private Nodo<Tipo> buscarNodo(int posicao) {
 		
 		Nodo<Tipo> resultado = getInicio();
-		
-		for (int i = 0; i < posicao; i++) {
-			resultado = resultado.getProximo();
+		//alteracao pra usar o fantasma
+		//for (int i = 0; i < posicao; i++) {
+		for (int i = -1; i < posicao; i++) {
+				resultado = resultado.getProximo();
 		}
 				
 		return resultado;
 	}
 
 	public void prefixar(Tipo valor) {
+		
+		// antigo sem fantasma
+/*		
 		Nodo<Tipo> primeiro = buscarPrimeiroNodo();
 		Nodo<Tipo> novoPrimeiro = new Nodo<Tipo>(valor);
-		
 		novoPrimeiro.setProximo(primeiro);
 		setInicio(novoPrimeiro);
+*/				
+		// novo com fantasma
+		// carrega o nodo
+		Nodo<Tipo> nodo = new Nodo<Tipo>(valor);
+		Nodo inicio = getInicio();
+		// esse valor eh nulo por causa do fantasma
+		Nodo inicioReal = inicio.getProximo();
+		
+		// chama o elemento apos o fantasma
+		nodo.setProximo(inicioReal);
+		// coloca a seta pro proximo da lista
+		inicio.setProximo(nodo);
+		
 	}
 
 	private Nodo<Tipo> buscarPrimeiroNodo() {
@@ -113,7 +132,9 @@ public class MinhaListaImp<Tipo> implements MinhaLista<Tipo> {
 	public int tamanho() {
 		
 		Nodo<Tipo> nodo = getInicio();
-		int resultado = 1;
+		//int resultado = 1;
+		// agora pode ter um nodo vazio (fantasma)
+		int resultado = 0;
 
 		while (nodo.getProximo() != null) {
 			nodo = nodo.getProximo();
@@ -121,6 +142,7 @@ public class MinhaListaImp<Tipo> implements MinhaLista<Tipo> {
 		}
 		
 		return resultado;
+		
 	}
 
 }
