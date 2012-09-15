@@ -1,8 +1,5 @@
 package br.com.senacrs.alp.aulas.trabalho5;
 
-import br.com.senacrs.alp.aulas.MinhaListaImp;
-import br.com.senacrs.alp.aulas.Nodo;
-
 
 public class FuncionarioFactoryImpl implements FuncionarioFactory {
 	
@@ -13,6 +10,7 @@ public class FuncionarioFactoryImpl implements FuncionarioFactory {
 		obj = FuncionarioFactoryImpl.getInstancia();
 	}
 	
+
 	public static FuncionarioFactoryImpl getInstancia(){
 		/*
 		if ( instancia == null){
@@ -32,7 +30,7 @@ public class FuncionarioFactoryImpl implements FuncionarioFactory {
 		//FuncionarioImp func = null;
 		FuncionarioImp func = new FuncionarioImp(nome, salario);
 		
-		System.out.println("func " + func);
+		//System.out.println("func " + func);
 		
 		return func;
 	}

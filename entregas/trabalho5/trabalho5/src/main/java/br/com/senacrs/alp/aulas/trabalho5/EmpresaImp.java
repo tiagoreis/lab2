@@ -1,19 +1,5 @@
 package br.com.senacrs.alp.aulas.trabalho5;
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-import junit.framework.Assert;
-
-import org.hamcrest.core.IsEqual;
-
-import br.com.senacrs.alp.aulas.MinhaLista;
-import br.com.senacrs.alp.aulas.MinhaListaImp;
-import br.com.senacrs.alp.aulas.Nodo;
-import br.com.senacrs.alp.aulas.MinhaLista;
-import br.com.senacrs.alp.aulas.MinhaListaImp;
-import br.com.senacrs.alp.aulas.MinhaLista;
-import br.com.senacrs.alp.aulas.MinhaListaImp;
-
 import br.com.senacrs.alp.aulas.MinhaLista;
 import br.com.senacrs.alp.aulas.MinhaListaImp;
 
@@ -24,9 +10,7 @@ public class EmpresaImp implements Empresa{
 	@Override
 	public void adicionaFuncionario(Funcionario funcionario) {
 		
-		MinhaLista<Funcionario> lista = null;
-		
-		//System.out.println("emp imp "+funcionario);
+		//MinhaLista<Funcionario> lista = null;
 		
 		if(funcionario == null){
 			throw new IllegalArgumentException();  
@@ -37,7 +21,7 @@ public class EmpresaImp implements Empresa{
 			//lista.sufixar(funcionario);
 			lista.prefixar(funcionario);
 			
-			System.out.println("add");
+			//System.out.println("add");
 			
 		}
 		
