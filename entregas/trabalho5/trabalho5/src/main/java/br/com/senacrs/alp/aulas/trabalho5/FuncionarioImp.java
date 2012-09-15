@@ -3,9 +3,9 @@ package br.com.senacrs.alp.aulas.trabalho5;
 public class FuncionarioImp implements Funcionario{ 
 
 	private String nome = null;
-	private int salario = 0;
+	private Integer salario = 0;
 	
-	public FuncionarioImp(String nome , int salario){
+	public FuncionarioImp(String nome , Integer salario){
 		
 		this.nome = nome;
 		this.salario = salario;
@@ -22,7 +22,7 @@ public class FuncionarioImp implements Funcionario{
 	public int getSalario() {
 		return salario;
 	}
-	public void setSalario(int salario) {
+	public void setSalario(Integer salario) {
 		this.salario = salario;
 	}
 	

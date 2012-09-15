@@ -6,7 +6,7 @@ import br.com.senacrs.alp.aulas.Nodo;
 
 public class FuncionarioFactoryImpl implements FuncionarioFactory {
 	
-	static FuncionarioFactoryImpl instancia = null;
+	static FuncionarioFactoryImpl instancia = new FuncionarioFactoryImpl();
 	
 	public static void main(String[] args) {
 		FuncionarioFactoryImpl obj = null;
@@ -14,9 +14,11 @@ public class FuncionarioFactoryImpl implements FuncionarioFactory {
 	}
 	
 	public static FuncionarioFactoryImpl getInstancia(){
+		/*
 		if ( instancia == null){
 			instancia = new FuncionarioFactoryImpl();
 		}
+		*/
 		return FuncionarioFactoryImpl.instancia;
 	}
 
@@ -35,6 +37,10 @@ public class FuncionarioFactoryImpl implements FuncionarioFactory {
 		return func;
 	}
 	
+	private FuncionarioFactoryImpl() {
+
+		super();
+	}
 
 }
 

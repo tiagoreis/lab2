@@ -9,16 +9,24 @@ import org.hamcrest.core.IsEqual;
 import br.com.senacrs.alp.aulas.MinhaLista;
 import br.com.senacrs.alp.aulas.MinhaListaImp;
 import br.com.senacrs.alp.aulas.Nodo;
+import br.com.senacrs.alp.aulas.MinhaLista;
+import br.com.senacrs.alp.aulas.MinhaListaImp;
+import br.com.senacrs.alp.aulas.MinhaLista;
+import br.com.senacrs.alp.aulas.MinhaListaImp;
+
+import br.com.senacrs.alp.aulas.MinhaLista;
+import br.com.senacrs.alp.aulas.MinhaListaImp;
 
 public class EmpresaImp implements Empresa{
 
+	MinhaLista<Funcionario> lista = new MinhaListaImp<Funcionario>();
 	
 	@Override
 	public void adicionaFuncionario(Funcionario funcionario) {
 		
 		MinhaLista<Funcionario> lista = null;
 		
-		System.out.println("emp imp "+funcionario);
+		//System.out.println("emp imp "+funcionario);
 		
 		if(funcionario == null){
 			throw new IllegalArgumentException();  
@@ -26,7 +34,8 @@ public class EmpresaImp implements Empresa{
 		} else {
 			
 			
-			lista.sufixar(funcionario);
+			//lista.sufixar(funcionario);
+			lista.prefixar(funcionario);
 			
 			System.out.println("add");
 			
@@ -36,23 +45,44 @@ public class EmpresaImp implements Empresa{
 
 	@Override
 	public Funcionario buscaFuncionario(String nome) {
-		/*
-		MinhaLista<Object> lista = null;
 		Funcionario funcionario = null;
-		Object teste = null;
-		
-		
-		teste = lista.buscar(0);
-		
-		//System.out.println("busca");
-		*/
-		return null;
+		FuncionarioImp funcionarioImp = null;
+		Funcionario result = null;
+
+		for (int i = 0; i < lista.tamanho(); i++) {
+
+			funcionario = lista.buscar(i);
+			funcionarioImp = cast(funcionario);
+
+			if(nome == funcionarioImp.getNome()){
+				result = funcionario;
+				break;
+			}
+
+		}
+
+		return result;
+	
 	}
 
+	
 	@Override
 	public int totalFolhaPgto() {
-		// TODO Auto-generated method stub
-		return 0;
+		Funcionario funcionario = null;
+		FuncionarioImp funcionarioImp = null;
+		int resultado = 0;
+
+		for (int i = 0; i < lista.tamanho(); i++) {
+
+			funcionario = lista.buscar(i);
+			funcionarioImp = cast(funcionario);
+
+			resultado += funcionarioImp.getSalario();
+
+		}
+
+		return resultado;
+		
 	}
 
 	
