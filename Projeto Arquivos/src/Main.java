@@ -7,6 +7,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 
+import org.omg.CORBA.PUBLIC_MEMBER;
+
 
 public class Main {
 
@@ -19,30 +21,36 @@ public class Main {
 		String dir = "meus-docs";
 		
 		//nome arquivo
-		String arq = "texto.txt";
+		String arqA = "texto.txt";
+		String arqB = "saida.txt";
 		
 		// junta tudo com separador correto
-		String path = prj + File.separatorChar 
-				+ dir + File.separatorChar + arq;
+		//String path = prj + File.separatorChar + dir + File.separatorChar + arqA;
+		String path = prj + File.separatorChar + dir + File.separatorChar + arqB;
 		
 		//tipo: arquivo
 		File file = new File(path);
 		InputStream input = null;
-		
+		OutputStream output = null;
 		
 		try {
-			input = new FileInputStream(file);
-		
-			imprimirConteudo(input);
+			
+			//input = new FileInputStream(file);
+			output = new FileOutputStream(file,true);
+			
+			
+			//imprimirConteudoInput(input);
+			imprimirConteudoOutput(output);
 			
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		} finally {
 			try {
-				if(input != null){
+				if(input != null ){
 					input.close();
-				} else {
-					System.out.println("input null");
+				} 
+				if(output != null){
+					output.close();
 				}
 				
 			} catch (IOException e) {
@@ -54,7 +62,26 @@ public class Main {
 		
 	}
 	
-	public static void imprimirConteudo(InputStream input) throws IOException {
+	private static void imprimirConteudoOutput(OutputStream output) {
+
+		byte[] texto = new byte[] {'a','b', 'c', 'd', 'a', '|'};
+		
+		try {
+
+			for (int i = 0; i < texto.length; i++) {
+				//System.out.print(texto[i]);
+				output.write(texto[i]);
+			}		
+				
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		
+		
+	}
+
+	public static void imprimirConteudoInput(InputStream input) throws IOException {
 		
 		int conteudo = 0;
 		char letra = '\0';
@@ -63,6 +90,8 @@ public class Main {
 		while(conteudo != -1){
 			letra = (char) conteudo;
 			System.out.print(letra);
+			//System.out.print(input.markSupported());
+			
 			conteudo = input.read();
 		}
 		
