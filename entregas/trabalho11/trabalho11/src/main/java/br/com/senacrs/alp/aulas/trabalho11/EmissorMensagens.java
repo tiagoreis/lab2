@@ -9,6 +9,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
 
+import javax.swing.plaf.basic.BasicBorders.SplitPaneBorder;
+
 public class EmissorMensagens {
 
 	File arquivo = null;
@@ -74,6 +76,8 @@ public class EmissorMensagens {
 
 		BufferedReader reader = null;
 
+		String [] arrKeyValue = null;
+		
 		try {
 
 			reader = new BufferedReader(new FileReader(arquivo));
@@ -86,6 +90,9 @@ public class EmissorMensagens {
 					stringToken = new StringTokenizer(linhas, token);
 					contadorChave = stringToken.countTokens();
 
+					// poderia usar o split pra fazer o array e o length != 2 pra verificar as chaves
+					
+					
 					// se nao tiver separador
 					if (linhas.indexOf(token) == -1) {
 
@@ -99,16 +106,15 @@ public class EmissorMensagens {
 							throw new IllegalArgumentException();
 						} else {
 
+							//System.out.println(linhas);
+							arrKeyValue = linhas.split(token);
 							
-							// tira os sacanas dos espaços duplos
-							key = linhas.substring(0,
-									linhas.indexOf(" " + token));
-							value = linhas.substring(linhas
-									.indexOf(token + " ") + 2);
-
+							// tira os sacanas dos espaços 
+							key = arrKeyValue[0].trim();
+							value = arrKeyValue[1].trim();
 							
 							map.put(key, value);
-							// System.out.println("----------------------------------");
+							//System.out.println("----------------------------------");
 
 						}
 					}
