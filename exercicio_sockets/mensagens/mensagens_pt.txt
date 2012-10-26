@@ -1,0 +1,2 @@
+mensagem_bom_dia = Bom dia tiago
+mensagem_erro =     Ocorreu um erro no modulo do tiago    
