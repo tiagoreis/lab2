@@ -21,9 +21,9 @@ public class ClienteMain {
 		
 		try {
 			
-			//client = new Socket("127.0.0.1", 54321);
+			client = new Socket("127.0.0.1", 54321);
 			//client = new Socket("192.168.6.138", 54321);
-			client = new Socket("192.168.6.131", 54321);
+			//client = new Socket("192.168.6.131", 54321);
 			
 			obj = new ManipuladorSocket(client);
 			
