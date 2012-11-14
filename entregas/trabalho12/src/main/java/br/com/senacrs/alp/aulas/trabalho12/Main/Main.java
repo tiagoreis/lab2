@@ -14,11 +14,11 @@ public class Main {
 		try {
 			
 			
-			mainReal.validaArgumento(args);
-			//System.out.println(mainReal.getMensagem());
+			mainReal.start(args);
+			System.out.println(mainReal.retorno());
 			
 		} catch (Exception e) {
-			System.out.println("Erro");
+			//System.out.println("Erro");
 			throw new IllegalArgumentException();
 
 		}
