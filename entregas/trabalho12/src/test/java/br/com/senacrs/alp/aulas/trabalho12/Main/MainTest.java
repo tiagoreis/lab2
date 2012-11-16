@@ -20,6 +20,7 @@ public class MainTest {
 	
 	private final static String NOME_ARQUIVO_REQUISICAO 		= "requisicao.properties";
 	//private final static String NOME_ARQUIVO_HTTP 		= null;
+	private static final String NOME_ARQUIVO_REQUISICAO_ERROR = "requisicaoError.properties";
 	
 
 	
@@ -38,22 +39,6 @@ public class MainTest {
 		
 	}
 	
-/*	@SuppressWarnings("static-access")
-	@Test
-	public void testDoisArgumentos(){
-		
-		Main main = new Main();
-		String[] args = {"arg1","arg2"};
-		
-		try {
-			main.main(args);
-			fail();
-		} catch (IllegalArgumentException e) {
-			Assert.assertTrue(true);
-		}
-		
-	}
-*/	
 	@SuppressWarnings("static-access")
 	@Test
 	public void testArgumentoNull(){
@@ -150,6 +135,20 @@ public class MainTest {
 	}
 
 
+	@Test
+	public void testRequisicaoErro(){
+		
+		Main main = new Main();
+		String[] args = {NOME_ARQUIVO_CONFIG, NOME_ARQUIVO_REQUISICAO_ERROR};
+		
+		try {
+			main.main(args);
+			fail();
+		} catch (IllegalArgumentException e) {
+			Assert.assertTrue(true);
+		}
+		
+	}
 
 
 }

@@ -19,6 +19,8 @@ public class Main {
 			
 		} catch (Exception e) {
 			//System.out.println("Erro");
+			//System.out.println(mainReal.retorno());
+			
 			throw new IllegalArgumentException();
 
 		}

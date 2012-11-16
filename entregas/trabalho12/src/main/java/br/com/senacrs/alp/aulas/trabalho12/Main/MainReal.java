@@ -232,13 +232,16 @@ public class MainReal {
 		String[] elementos = null;
 		String espaco = " ";
 
-		if (linhaHost.startsWith("Host: ")) {
-			elementos = linhaHost.split(espaco);
-			if (elementos.length == 2) {
-				if (elementos[0].equalsIgnoreCase("Host:")) {
-				}
-			}
+		if (!linhaHost.startsWith("Host: ")) {
+			throw new IllegalArgumentException();
 		}
+
+		elementos = linhaHost.split(espaco);
+
+		if (elementos.length != 2 || !elementos[0].equalsIgnoreCase("Host:")) {
+			throw new IllegalArgumentException();
+		}
+
 	}
 
 	private String lerCaminhoRequisicao(String linhaGet) {
@@ -248,16 +251,18 @@ public class MainReal {
 		elementos = linhaGet.split(espaco);
 		String caminho = null;
 
-		if (elementos.length == 3) {
-			if (elementos[0].equalsIgnoreCase("GET")) {
-				if (elementos[2].equalsIgnoreCase("http/1.1")) {
-					protocolo = elementos[2];
-					caminho = elementos[1];
-					if (caminho.startsWith("/")) {
-					}
-				}
-			}
+		if (elementos.length != 3 || !elementos[0].equalsIgnoreCase("GET")
+				|| !elementos[1].startsWith("/")
+				|| !elementos[2].equalsIgnoreCase("HTTP/1.1")) {
+
+			throw new IllegalArgumentException();
+
+		} else {
+			protocolo = elementos[2];
+			caminho = elementos[1];
+
 		}
+
 		return caminho;
 	}
 
