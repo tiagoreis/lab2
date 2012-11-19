@@ -21,7 +21,66 @@ public class MainTest {
 	private final static String NOME_ARQUIVO_REQUISICAO 		= "requisicao.properties";
 	//private final static String NOME_ARQUIVO_HTTP 		= null;
 	private static final String NOME_ARQUIVO_REQUISICAO_ERROR = "requisicaoError.properties";
+
+	private final static String NOME_ARQUIVO_SAIDA 		= "saida.txt";
 	
+	
+	/*
+
+	<saida> (wiki)
+HTTP/1.1 200 OK
+Date: Mon, 23 May 2005 22:38:34 GMT
+Server: Apache/1.3.27 (Unix)  (Red-Hat/Linux)
+Last-Modified: Wed, 08 Jan 2003 23:11:55 GMT
+Etag: "3f80f-1b6-3e1cb03b"
+Accept-Ranges: bytes
+Content-Length: 438
+Connection: close
+Content-Type: text/html; charset=UTF-8
+(terminar com uma linha vazia)
+<conteudo>
+
+String resultado = null;
+data = null;
+data = new Date();
+DateFormat format = null;
+
+format = DateFormat.getDateInstance();
+format.setTimeZone(TimeZone.getTimeZone("GMT"));
+resultado = format.format(data);
+
+
+/meuHtml.html:
+oi mundo web = tam.12bytes
+
+req:
+GET /meuHtml.html http/1.1
+Host: localhost
+
+saida (parte D):
+-------------------------------------------------
+|HTTP/1.1 200 OK
+|Date: Mon, 23 May 2005 22:38:34 GMT
+|Server: Apache/1.3.27 (Unix)  (Red-Hat/Linux)
+|Content-Length: 12
+|Content-Type: text/html; charset=UTF-8
+|Connection: close
+|
+|oi mundo web
+-------------------------------------------------
+
+-------------------------------------------------
+|HTTP/1.1 404 NotFound
+|Date: Mon, 23 May 2005 22:38:34 GMT
+|Server: Apache/1.3.27 (Unix)  (Red-Hat/Linux)
+|Content-Length: 0
+|Content-Type: text/html; charset=UTF-8
+|Connection: close
+|
+-------------------------------------------------
+
+
+	*/
 
 	
 	@SuppressWarnings("static-access")
@@ -29,7 +88,7 @@ public class MainTest {
 	public void testArgumento(){
 		
 		Main main = new Main();
-		String[] args = {NOME_ARQUIVO_CONFIG, NOME_ARQUIVO_REQUISICAO};
+		String[] args = {NOME_ARQUIVO_CONFIG, NOME_ARQUIVO_REQUISICAO, NOME_ARQUIVO_SAIDA};
 		
 		try {
 			main.main(args);

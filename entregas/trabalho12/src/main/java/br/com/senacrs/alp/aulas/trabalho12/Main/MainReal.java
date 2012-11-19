@@ -1,12 +1,18 @@
 package br.com.senacrs.alp.aulas.trabalho12.Main;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
+import java.util.TimeZone;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -28,7 +34,14 @@ public class MainReal {
 	String mensagem = null;
 	String protocolo = null;
 
+	long contentLength = 0;
+	String contentType = "text/html; charset=UTF-8";
+	String server = "Apache/1.3.27 (Unix)  (Red-Hat/Linux)";
+	String dateGMT = null;
+
 	public void start(String[] args) {
+
+		gerarDataGMT();
 
 		this.DIRETORIO_CONFIG = System.getProperty("user.dir")
 				+ File.separatorChar + "config" + File.separatorChar;
@@ -39,20 +52,63 @@ public class MainReal {
 
 		String nomeArquivoConfig = null;
 		String nomeArquivoRequisicao = null;
+		String nomeArquivoSaida = null;
 
 		validaArgumento(args);
 
 		nomeArquivoConfig = args[0];
 		nomeArquivoRequisicao = args[1];
+		nomeArquivoSaida = args[2];
 
 		try {
 			lerArquivoConfig(nomeArquivoConfig);
 			lerArquivoRequisicao(nomeArquivoRequisicao);
 
+			escreverArquivoSaida(nomeArquivoSaida);
+
 		} catch (Exception e) {
 			throw new IllegalArgumentException(e);
 		}
 
+	}
+
+	private void escreverArquivoSaida(String nomeArquivoSaida) {
+
+		String texto = null;
+		BufferedWriter writer = null;
+		FileWriter file = null;
+		String[] conteudo = { "HTTP/1.1 200 OK", dateGMT, "server: " + server,
+				"contentLength: " + contentLength,
+				"contente type: " + contentType };
+
+		try {
+			file = new FileWriter(nomeArquivoSaida);
+			writer = new BufferedWriter(file);
+
+			for (int i = 0; i < conteudo.length; i++) {
+				System.out.println(conteudo[i].toString());
+				texto = conteudo[i];
+				writer.write(texto);
+				writer.newLine();
+				writer.flush();
+			}
+
+		} catch (Exception ex) {
+
+		}
+
+	}
+
+	private void gerarDataGMT() {
+		Date data = null;
+		DateFormat formatador = null;
+		String resultado = null;
+
+		data = new Date();
+		formatador = DateFormat.getDateInstance();
+		formatador.setTimeZone(TimeZone.getTimeZone("GMT"));
+		resultado = formatador.format(data);
+		dateGMT = resultado;
 	}
 
 	public void lerArquivoConfig(String nomeArquivoConfig) {
@@ -116,8 +172,8 @@ public class MainReal {
 
 	public void validaArgumento(String[] args) {
 
-		if (args == null || args.length != 2 || args[0] == null
-				|| args[1] == null) {
+		if (args == null || args.length != 3 || args[0] == null
+				|| args[1] == null || args[2] == null) {
 			throw new IllegalArgumentException();
 		}
 
@@ -203,7 +259,10 @@ public class MainReal {
 					arquivoIndexExiste = file.exists();
 
 					if (arquivoIndexExiste) {
+
+						contentLength = file.length();
 						caminhoCompletoIndex = file.toString();
+						lerArquivoHtml(file);
 
 					} else {
 						throw new IllegalArgumentException();
@@ -223,6 +282,29 @@ public class MainReal {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+		}
+
+	}
+
+	private void lerArquivoHtml(File file) {
+
+		BufferedReader reader = null;
+		String linhas = null;
+
+		try {
+			reader = new BufferedReader(new FileReader(file));
+			try {
+				while ((linhas = reader.readLine()) != null) {
+					System.out.println(linhas);
+
+				}
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 	}
@@ -285,7 +367,7 @@ public class MainReal {
 		// retorno = root_dir;
 
 		// Parte: C
-		retorno = "200 OK " + caminhoCompletoIndex;
+		retorno = "200 OK " + caminhoCompletoIndex;// falta o 404 NotFound
 
 		return retorno;
 	}
