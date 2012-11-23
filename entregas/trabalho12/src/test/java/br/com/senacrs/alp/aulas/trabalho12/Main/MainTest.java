@@ -22,8 +22,11 @@ public class MainTest {
 	//private final static String NOME_ARQUIVO_HTTP 		= null;
 	private static final String NOME_ARQUIVO_REQUISICAO_ERROR = "requisicaoError.properties";
 
-	private final static String NOME_ARQUIVO_SAIDA 		= "saida.txt";
+	private final static String NOME_ARQUIVO_SAIDA = "saida.txt";
+	private final static String NOME_ARQUIVO_DIRETORIO_SAIDA = "./txt1/txt2/saida2.txt";
+	private final static String NOME_ARQUIVO_DIRETORIO_SAIDA_INVALIDO = "/txt1/txt2/saida2.txt";
 	
+	private final static String NOME_ARQUIVO_INDEX_INVALIDO = "";
 	
 	/*
 
@@ -94,6 +97,8 @@ saida (parte D):
 			main.main(args);
 		} catch (IllegalArgumentException e) {
 			Assert.assertTrue(true);
+			fail("Não é pra abortar");
+
 		}
 		
 	}
@@ -106,7 +111,7 @@ saida (parte D):
 		
 		try {
 			main.main(null);
-			fail();
+			fail("ERRO");
 		} catch (IllegalArgumentException e) {
 			Assert.assertTrue(true);
 		}
@@ -122,7 +127,7 @@ saida (parte D):
 		
 		try {
 			main.main(args);
-			fail();
+			fail("ERRO");
 		} catch (IllegalArgumentException e) {
 			Assert.assertTrue(true);
 		}
@@ -138,7 +143,7 @@ saida (parte D):
 		
 		try {
 			main.main(args);
-			fail();
+			fail("ERRO");
 		} catch (IllegalArgumentException e) {
 			Assert.assertTrue(true);
 		}
@@ -154,7 +159,7 @@ saida (parte D):
 		
 		try {
 			main.main(args);
-			fail();
+			fail("ERRO");
 		} catch (IllegalArgumentException e) {
 			Assert.assertTrue(true);
 		}
@@ -171,7 +176,7 @@ saida (parte D):
 		
 		try {
 			main.main(args);
-			fail();
+			fail("ERRO");
 		} catch (IllegalArgumentException e) {
 			Assert.assertTrue(true);
 		}
@@ -186,7 +191,7 @@ saida (parte D):
 		String[] args = {NOME_ARQUIVO_CONFIG_INVALIDO + ".nao_existe"};
 		try {
 			main.main(args);
-			fail();
+			fail("ERRO");
 		} catch (IllegalArgumentException e) {
 			Assert.assertTrue(true);
 		}
@@ -202,12 +207,43 @@ saida (parte D):
 		
 		try {
 			main.main(args);
-			fail();
+			fail("ERRO");
 		} catch (IllegalArgumentException e) {
 			Assert.assertTrue(true);
 		}
 		
 	}
 
+	@Test
+	public void testArquivoDiretorioSaidaInvalido(){
+		
+		Main main = new Main();
+		String[] args = {NOME_ARQUIVO_CONFIG, NOME_ARQUIVO_REQUISICAO, NOME_ARQUIVO_DIRETORIO_SAIDA_INVALIDO};
+		
+		try {
+			main.main(args);
+			fail("ERRO");
+			
+		} catch (IllegalArgumentException e) {
+			Assert.assertTrue(true);
+		}
+		
+	}
+
+	@Test
+	public void testSaidaIndexInvalido(){
+		
+		Main main = new Main();
+		String[] args = {NOME_ARQUIVO_CONFIG, NOME_ARQUIVO_REQUISICAO, NOME_ARQUIVO_DIRETORIO_SAIDA_INVALIDO};
+		
+		try {
+			main.main(args);
+			fail("ERRO");
+			
+		} catch (IllegalArgumentException e) {
+			Assert.assertTrue(true);
+		}
+		
+	}
 
 }

@@ -13,13 +13,11 @@ public class Main {
 		
 		try {
 			
-			
 			mainReal.start(args);
-			System.out.println(mainReal.retorno());
+			System.out.println(mainReal.getMensagem());
 			
 		} catch (Exception e) {
 			//System.out.println("Erro");
-			//System.out.println(mainReal.retorno());
 			
 			throw new IllegalArgumentException();
 

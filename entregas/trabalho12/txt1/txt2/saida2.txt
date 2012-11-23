@@ -1,9 +1,7 @@
 HTTP/1.1 200 OK
-Date: Qua, 21 Nov 2012 17:18:51 BRST
+Date: Qua, 21 Nov 2012 16:52:47 GMT
 Server: servidor
 Content-Length: 29
 Content-Type: text/html; charset=UTF-8
 Connection: close
 
-primeira linha
-segunda linha
