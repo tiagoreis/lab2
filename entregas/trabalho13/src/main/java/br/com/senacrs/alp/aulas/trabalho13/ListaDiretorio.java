@@ -1,8 +1,9 @@
 package br.com.senacrs.alp.aulas.trabalho13;
 
 import java.io.File;
-import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class ListaDiretorio {
 
@@ -46,20 +47,41 @@ public class ListaDiretorio {
 			resultado[0] = "list: " + fileDiretorio ;
 			resultado[1] = "total: " + listFile.length;
 			
+			Arrays.sort(dir); 
+			Arrays.sort(arq); 
 			
+			Object[] teste = conteudoDiretorioUnificado(dir, arq);
+			
+			for (int i = 0; i < teste.length; i++) {
+				resultado[i + 2] = teste[i].toString();
+				//System.out.println(teste[i]);
+			}
 			
 		} else {
 			resultado = new String[2];
 			resultado[0] = "list: " + fileDiretorio ;
 			resultado[1] = "total: " + listFile.length;
-			
-
 		}
 
-		Arrays.sort(dir); 
-		Arrays.sort(arq); 
-		
 		return resultado;
+	}
+
+	private Object[] conteudoDiretorioUnificado(String[] dir, String[] arq) {
+		// TODO Auto-generated method stub
+		   String[] array1 = dir;
+
+           String[] array2 = arq;
+
+           List<String> list1 = new ArrayList<String>( Arrays.asList(array1) );
+
+           List<String> list2 = new ArrayList<String>( Arrays.asList(array2) );
+
+           list1.addAll(list2);
+
+           
+           
+           return list1.toArray(); 
+		
 	}
 
 	private String[] montarArrayArquivos(File[] listFile, int numeroArquivos) {
